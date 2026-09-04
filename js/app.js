@@ -39,7 +39,7 @@ async function loadData() {
     renderGrid();
   } catch (err) {
     console.error(err);
-    document.getElementById("loading").textContent = "数据加载失败。请检查 js/config.js 中的 dataOwner 配置。";
+    document.getElementById("loading").textContent = "数据加载失败。请检�?js/config.js 中的 dataOwner 配置�?;
   }
 }
 
@@ -55,12 +55,12 @@ async function loadLiveIssueCounts() {
     const countByCode = {};
     for (const issue of issues) {
       const m = (issue.title || "").match(/评分\s*\|\s*(.+?)/);
-      // Try to match code from body — but we use pre-computed ratings.json for averages
+      // Try to match code from body �?but we use pre-computed ratings.json for averages
     }
     // We rely on ratings.json for aggregated data; live count is supplementary
     renderGrid(); // re-render if ratings were sparse
   } catch {
-    // Silent fail — ratings.json is the primary source
+    // Silent fail �?ratings.json is the primary source
   }
 }
 
@@ -82,8 +82,8 @@ function updateStats() {
   const reviewed = Object.keys(ratings).length;
   const totalReviews = Object.values(ratings).reduce((s, r) => s + (r.count || 0), 0);
   document.getElementById("stat-total").textContent = `📋 ${total} 款长胶`;
-  document.getElementById("stat-active").textContent = `✅ ${active} 款认证有效`;
-  document.getElementById("stat-reviews").textContent = `⭐ ${totalReviews} 条用户评价（${reviewed} 款有评价）`;
+  document.getElementById("stat-active").textContent = `�?${active} 款认证有效`;
+  document.getElementById("stat-reviews").textContent = `�?${totalReviews} 条用户评价（${reviewed} 款有评价）`;
 }
 
 function applyFilters() {
@@ -162,7 +162,7 @@ function rubberCard(r) {
   const bars = rating ? renderRatingBars(rating.average) : "";
   const statusBadge = r.isActive
     ? '<span class="badge badge-active">认证有效</span>'
-    : '<span class="badge badge-expired">已过期</span>';
+    : '<span class="badge badge-expired">已过�?/span>';
   const imgSrc = r.imageUrl
     ? r.imageUrl
     : "";
@@ -175,8 +175,8 @@ function rubberCard(r) {
     <div class="card ${r.isActive ? "" : "card-inactive"}" data-code="${escapeAttr(r.code)}">
       <div class="card-img ${imgHtml ? "" : "img-fallback"}">${imgHtml}</div>
       <div class="card-body">
-        <div class="card-brand">${escapeHtml(r.brand || "—")}</div>
-        <div class="card-model">${escapeHtml(r.model || "—")}</div>
+        <div class="card-brand">${escapeHtml(r.brand || "�?)}</div>
+        <div class="card-model">${escapeHtml(r.model || "�?)}</div>
         <div class="card-meta">
           ${statusBadge}
           ${r.code ? `<span class="badge badge-code">${escapeHtml(r.code)}</span>` : ""}
@@ -185,11 +185,11 @@ function rubberCard(r) {
         ${count > 0 ? `
           <div class="card-rating">
             ${stars} <span class="rating-num">${overall.toFixed(1)}</span>
-            <span class="rating-count">(${count}人)</span>
+            <span class="rating-count">(${count}�?</span>
           </div>
           <div class="card-bars">${bars}</div>
         ` : '<div class="card-noreview">暂无评价</div>'}
-        <div class="card-action">查看评价 →</div>
+        <div class="card-action">查看评价 �?/div>
       </div>
     </div>`;
 }
@@ -197,7 +197,7 @@ function rubberCard(r) {
 function renderStars(score) {
   const full = Math.round(score);
   let s = "";
-  for (let i = 0; i < 5; i++) s += i < full ? "★" : "☆";
+  for (let i = 0; i < 5; i++) s += i < full ? "�? : "�?;
   return `<span class="stars">${s}</span>`;
 }
 
@@ -229,31 +229,31 @@ function openModal(code) {
     <div class="detail-header">
       <h2>${escapeHtml(r.brand)} ${escapeHtml(r.model)}</h2>
       <div class="detail-badges">
-        ${r.isActive ? '<span class="badge badge-active">认证有效</span>' : '<span class="badge badge-expired">已过期</span>'}
+        ${r.isActive ? '<span class="badge badge-active">认证有效</span>' : '<span class="badge badge-expired">已过�?/span>'}
         ${r.code ? `<span class="badge badge-code">${escapeHtml(r.code)}</span>` : ""}
       </div>
     </div>
     <div class="detail-info">
-      ${r.colors.length ? `<p><strong>颜色：</strong>${r.colors.join("、")}</p>` : ""}
-      ${r.expiresOn ? `<p><strong>有效期至：</strong>${formatDate(r.expiresOn)}</p>` : ""}
-      ${r.hasOXVersion != null ? `<p><strong>OX 版本：</strong>${r.hasOXVersion ? "有" : "无"}</p>` : ""}
+      ${r.colors.length ? `<p><strong>颜色�?/strong>${r.colors.join("�?)}</p>` : ""}
+      ${r.expiresOn ? `<p><strong>有效期至�?/strong>${formatDate(r.expiresOn)}</p>` : ""}
+      ${r.hasOXVersion != null ? `<p><strong>OX 版本�?/strong>${r.hasOXVersion ? "�? : "�?}</p>` : ""}
     </div>`;
 
   if (rating && rating.count > 0) {
     html += `
       <div class="detail-radar">
-        <h3>评分雷达图</h3>
+        <h3>评分雷达�?/h3>
         ${renderRadar(rating.average)}
       </div>
       <div class="detail-bars">${renderRatingBars(rating.average)}</div>
-      <div class="detail-overall">综合评分：${rating.overall.toFixed(1)} / 5.0（${rating.count} 人评价）</div>`;
+      <div class="detail-overall">综合评分�?{rating.overall.toFixed(1)} / 5.0�?{rating.count} 人评价）</div>`;
 
     if (rating.styles && Object.keys(rating.styles).length) {
       const total = Object.values(rating.styles).reduce((s, v) => s + v, 0);
       html += `<div class="detail-styles"><h3>打法分布</h3><div class="style-bars">`;
       for (const [style, cnt] of Object.entries(rating.styles)) {
         const pct = total ? Math.round((cnt / total) * 100) : 0;
-        html += `<div class="bar-row"><span class="bar-label">${escapeHtml(style)}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-num">${cnt}人 (${pct}%)</span></div>`;
+        html += `<div class="bar-row"><span class="bar-label">${escapeHtml(style)}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="bar-num">${cnt}�?(${pct}%)</span></div>`;
       }
       html += `</div></div>`;
     }
@@ -274,12 +274,12 @@ function openModal(code) {
       html += `</div>`;
     }
   } else {
-    html += `<div class="detail-noreview">还没有人评价这款长胶，成为第一个评价的人吧！</div>`;
+    html += `<div class="detail-noreview">还没有人评价这款长胶，成为第一个评价的人吧�?/div>`;
   }
 
   const issueTitle = `评分 | ${r.brand} ${r.model} | ${code}`;
-  const issueUrl = `https://github.com/${CONFIG.dataOwner}/${CONFIG.dataRepo}/issues/new?template=rating.yml&labels=rating&title=${encodeURIComponent(issueTitle)}`;
-  html += `<a href="${issueUrl}" target="_blank" rel="noopener" class="btn-rate">✍ 我要评价</a>`;
+  const issueUrl = `https://github.com/${CONFIG.dataOwner}/${CONFIG.dataRepo}/issues/new?template=rating&labels=rating&title=${encodeURIComponent(issueTitle)}`;
+  html += `<a href="${issueUrl}" target="_blank" rel="noopener" class="btn-rate">�?我要评价</a>`;
 
   body.innerHTML = html;
   document.getElementById("modal").style.display = "flex";
@@ -342,7 +342,7 @@ function renderRadar(avg) {
 
 // ==================== Utils ====================
 function formatDate(d) {
-  if (!d) return "—";
+  if (!d) return "�?;
   try { return new Date(d).toLocaleDateString("zh-CN"); } catch { return d; }
 }
 function debounce(fn, ms) {
