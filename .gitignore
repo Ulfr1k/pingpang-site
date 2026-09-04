@@ -1,0 +1,4 @@
+# Temp files
+*.cjs
+screenshot*.png
+node_modules/

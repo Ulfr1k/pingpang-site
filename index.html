@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏓 ITTF 认证长胶评价库</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>🏓 ITTF 认证长胶评价库</h1>
+      <p class="subtitle">覆盖所有 ITTF LARC 长胶清单 · 用户真实评分</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input type="text" id="search" placeholder="搜索品牌或型号..." autocomplete="off">
+      <select id="filter-brand"><option value="">所有品牌</option></select>
+      <select id="filter-status"><option value="">所有状态</option><option value="active">认证有效</option><option value="inactive">已过期</option></select>
+      <select id="sort"><option value="brand">按品牌</option><option value="rating">按评分</option><option value="model">按型号</option></select>
+    </div>
+
+    <div class="stats-bar" id="stats">
+      <span id="stat-total"></span>
+      <span id="stat-active"></span>
+      <span id="stat-reviews"></span>
+    </div>
+
+    <div id="expired-banner" class="expired-banner" style="display:none;">
+      ⚠️ 以下长胶已取消 ITTF 认证（认证已过期），仅作参考。
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <div id="loading" class="loading">加载中...</div>
+    <div id="empty" class="empty" style="display:none;">没有找到匹配的长胶</div>
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>数据来源：<a href="https://equipment.ittf.com/#/equipment/racket_coverings" target="_blank" rel="noopener">ITTF Equipment</a> · 评分由社区贡献 · 每周自动同步</p>
+    <p class="disclaimer">本站为非官方社区项目，仅供参考。购买前请查阅 ITTF 官方最新清单。</p>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
