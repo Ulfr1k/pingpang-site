@@ -278,7 +278,7 @@ function openModal(code) {
   }
 
   const issueTitle = `评分 | ${r.brand} ${r.model} | ${code}`;
-  const issueUrl = `https://github.com/${CONFIG.dataOwner}/${CONFIG.dataRepo}/issues/new?template=rating&labels=rating&title=${encodeURIComponent(issueTitle)}`;
+  const issueUrl = `https://github.com/${CONFIG.dataOwner}/${CONFIG.dataRepo}/issues/new?template=rating.yml&labels=rating&title=${encodeURIComponent(issueTitle)}`;
   html += `<a href="${issueUrl}" target="_blank" rel="noopener" class="btn-rate">�?我要评价</a>`;
 
   body.innerHTML = html;
