@@ -8,7 +8,7 @@
  */
 const CONFIG = {
   // Change to your GitHub username/org
-  dataOwner: "YOUR_GITHUB_USERNAME",
+  dataOwner: "Ulfr1k",
   dataRepo: "pingpang-reviews",
   dataBranch: "main",
 
@@ -47,3 +47,4 @@ async function fetchFirst(urls) {
   }
   return null;
 }
+
